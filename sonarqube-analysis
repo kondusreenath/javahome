@@ -3,13 +3,13 @@ node{
      git 'https://github.com/kondusreenath/javahome'
    }
    stage('Clean-Package'){
-   sh label: '', script: 'mvn clean package'
+   sh label: ", script: 'mvn clean package'
    
    }
    
    stage('SonarQube Analysis') {
-        def mvnHome =  tool name: 'maven-3', type: 'maven'
-        withSonarQubeEnv('sonar-6') { 
+        def mvnHome =  tool name: 'maven', type: 'maven'
+        withSonarQubeEnv('sonar') { 
           sh "${mvnHome}/bin/mvn sonar:sonar"
         }
     }
